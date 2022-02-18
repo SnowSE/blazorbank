@@ -6,7 +6,7 @@ public abstract class Account
     {
         Name = name;
     }
-
+//another comment
     public string Name { get; }
     public decimal Balance { get; private set; }
 
