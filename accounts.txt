@@ -1,0 +1,12 @@
+Name:Scrooge
+Balance:0
+AccountLevel:HighRoller
+AccountType:CheckingAccount
+Name:ScroogeSavings
+Balance:0
+MaxBalance:0
+AccountType:SavingsAccount
+Name:Dorian
+Balance:0
+AccountLevel:HighRoller
+AccountType:CheckingAccount
