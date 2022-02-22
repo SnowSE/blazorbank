@@ -6,8 +6,11 @@
 
 <label>Name</label> <br />
 <input type='text' @bind=newAccountName /> <br />
-<button @onclick="makeCheckingAccount">Make Checking Account</button><button @onclick="makeSavingsAccount">Make Savings Account</button> <br />
+<input type=''
+<button @onclick="makeCheckingAccount">Make Checking Account</button>
+<button @onclick="makeSavingsAccount">Make Savings Account</button> <br />
 <button @onclick="saveAccounts">Save Accounts</button> <br />
+
 
 <h1>Account List</h1>
 @if (accounts.Count == 0)
@@ -19,8 +22,39 @@
     <p>@account.Name: @account.Balance.ToString("c")</p>
 }
 
+
+<h1>Hello, tis the converter for Fahrenheit!</h1>
+
+<h3>Fahrenheit in Celsius</h3>
+
+<input @bind=Fahrenheit />
+<button @onclick="NewCelsius">Calculate</button> <br />
+Celsius: @celsius<br>
+Fahrenheit: @Fahrenheit<br>
+
+<h3>Celsius in Fahrenheit</h3>
+<input @bind=celsius />
+<button @onclick="NewFahrenheit">Calculate</button> <br />
+Celsius: @celsius<br>
+Fahrenheit: @Fahrenheit<br>
+
+
 @code
 {
+    public double Fahrenheit;
+    public double celsius = 0;
+
+    public void NewCelsius()
+    {
+        celsius = (Fahrenheit - 32) * 5 / 9;
+
+    }
+    public void NewFahrenheit()
+    {
+        Fahrenheit = (celsius*9)/5 + 32;
+
+    }
+
     protected override void OnInitialized()
     {
         if (File.Exists("accounts.txt"))
