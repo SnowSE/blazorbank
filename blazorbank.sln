@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank.lib", "bank.lib\bank.lib.csproj", "{0ABCF3CA-A19F-4595-A50B-3C8C3A4BA917}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazorbank", "bank.web\blazorbank.csproj", "{2DB30E51-5D24-49A6-86FB-7827D430983E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ABCF3CA-A19F-4595-A50B-3C8C3A4BA917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ABCF3CA-A19F-4595-A50B-3C8C3A4BA917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ABCF3CA-A19F-4595-A50B-3C8C3A4BA917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ABCF3CA-A19F-4595-A50B-3C8C3A4BA917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB30E51-5D24-49A6-86FB-7827D430983E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB30E51-5D24-49A6-86FB-7827D430983E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB30E51-5D24-49A6-86FB-7827D430983E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB30E51-5D24-49A6-86FB-7827D430983E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -42,11 +42,28 @@ public class CheckingAccount : Account
 {
     public CheckingAccount(string name, CheckingAccountLevel accountLevel) : base(name)
     {
+        if (name.ToUpper()[0] == name[0])
+        {
+            if(name.Length > 2)
+            {
+                //is good
+            }
+            else{
+                //is bad
+                throw new NameTooShortException();
+            }
+            //is good
+        }
+        else
+        {
+            //is bad
+            throw new NameMustStartWithCapitalException();
+        }
         AccountLevel = accountLevel;
     }
 
     public CheckingAccountLevel AccountLevel { get; }
-
+    
     public override void Save(StreamWriter writer)
     {
         base.Save(writer);

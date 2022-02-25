@@ -5,7 +5,7 @@
 <h1>Make an account</h1>
 
 <label>Name</label> <br />
-<input type='text' @bind=newAccountName /> <br />
+<input type='text' @bind=newAccountName /> <span style= "font-weight: bolder; color: red">@errorMessage </span> <br />
 <button @onclick="makeAccount">Make Account</button> <br />
 <button @onclick="saveAccounts">Save Accounts</button> <br />
 
@@ -51,11 +51,25 @@
 
     string newAccountName;
     List<Account> accounts = new();
+    string errorMessage;
 
     private void makeAccount()
     {
-        var newAccount = new CheckingAccount(newAccountName, CheckingAccountLevel.HighRoller);
-        accounts.Add(newAccount);
+        try
+        {
+            var newAccount = new CheckingAccount(newAccountName, CheckingAccountLevel.HighRoller);
+            accounts.Add(newAccount);
+            errorMessage = null;
+        }
+        catch(NameMustStartWithCapitalException)
+        {
+            errorMessage = "Invaild Name: must start with capital letter.";
+        }
+        catch(NameTooShortException)
+        {
+            errorMessage = "Invalid Name: Your name is too short";
+        }
+       
         newAccountName = null;
     }
 
