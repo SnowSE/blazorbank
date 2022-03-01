@@ -16,9 +16,12 @@
 {
     <p>No accounts in list.</p>
 }
+
 @foreach (var account in bank.Accounts)
 {
-    <p>@account.Name: @account.Balance.ToString("c")</p>
+    <a href="/account/@account.Name">
+        @account.Name
+    </a> <br/>
 }
 
 @code

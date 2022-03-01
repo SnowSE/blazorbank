@@ -49,10 +49,14 @@ public abstract class Account
                 switch (parts[1])
                 {
                     case "SavingsAccount":
-                        accounts.Add(new SavingsAccount(accountName));
+                        var account = new SavingsAccount(accountName);
+                        account.Balance = balance;
+                        accounts.Add(account);                        
                         break;
                     case "CheckingAccount":
-                        accounts.Add(new CheckingAccount(accountName, accountLevel));
+                        var checkAccount = new CheckingAccount(accountName, accountLevel);
+                        checkAccount.Balance = balance;
+                        accounts.Add(checkAccount);
                         break;
                 }
             }

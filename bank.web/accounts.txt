@@ -1,8 +1,8 @@
 Name:John
-Balance:0
+Balance:23
 AccountLevel:HighRoller
 AccountType:CheckingAccount
 Name:Jane
-Balance:0
+Balance:100
 MaxBalance:0
 AccountType:SavingsAccount

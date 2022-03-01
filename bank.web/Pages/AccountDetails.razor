@@ -1,0 +1,48 @@
+@page "/account/{accountName}"
+@using bank.lib
+
+<PageTitle>Account Details</PageTitle>
+
+@if (SelectedAccount == null)
+{
+    <p>No account '@AccountName' found</p>
+    <p>And there are @bank.Accounts.Count() accounts</p>
+}
+else
+{
+
+    <h1>@AccountName</h1>
+    <p>Current Balance: @SelectedAccount.Balance.ToString("c")</p>
+    <label>Deposit Amount
+        <input @bind=depositAmount />
+    </label>
+    <button @onclick=makeDeposit>Make Deposit</button>
+}
+
+@code
+{
+    [Parameter]
+    public string AccountName { get; set; }
+    Bank bank = new();
+    decimal depositAmount;
+    public Account SelectedAccount { get; set; }
+
+    protected override void OnInitialized()
+    {
+        bank.LoadAccounts();
+        foreach (var account in bank.Accounts)
+        {
+            if (account.Name == AccountName)
+            {
+                SelectedAccount = account;
+                break;
+            }
+        }
+    }
+
+    void makeDeposit()
+    {
+        SelectedAccount.MakeDeposit(depositAmount);
+        bank.SaveAccounts();
+    }
+}
