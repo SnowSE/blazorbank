@@ -1,8 +1,8 @@
-Name:Scrooge
+Name:John
 Balance:0
 AccountLevel:HighRoller
 AccountType:CheckingAccount
-Name:ScroogeSavings
+Name:Jane
 Balance:0
 MaxBalance:0
 AccountType:SavingsAccount

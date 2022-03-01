@@ -25,10 +25,7 @@
 {
     protected override void OnInitialized()
     {
-        if (File.Exists("accounts.txt"))
-        {
-            accounts = Account.Load("accounts.txt");
-        }
+        bank.LoadAccounts();
     }
 
     string newAccountName;
@@ -37,7 +34,13 @@
 
     private void makeCheckingAccount()
     {
-        errorMessage = bank.MakeAccount(newAccountName);
+        errorMessage = bank.MakeCheckingAccount(newAccountName);
+        newAccountName = null;
+    }
+
+    private void makeSavingsAccount()
+    {
+        errorMessage = bank.MakeSavingsAccount(newAccountName);
         newAccountName = null;
     }
 

@@ -12,7 +12,7 @@ public class Bank
 
     public IEnumerable<Account> Accounts => accounts;
 
-    public string MakeAccount(string newAccountName)
+    public string MakeCheckingAccount(string newAccountName)
     {
         string errorMessage;
         
@@ -34,6 +34,19 @@ public class Bank
         return errorMessage;
     }
 
+    public string MakeSavingsAccount(string newAccountName)
+    {
+        try
+        {
+            accounts.Add(new SavingsAccount(newAccountName));
+            return null;
+        }
+        catch(Exception ex)
+        {
+            return ex.Message;
+        }
+    }
+
     public void SaveAccounts()
     {
         using (var writer = new StreamWriter("accounts.txt"))
@@ -43,6 +56,14 @@ public class Bank
                 account.Save(writer);
             }
             writer.Close();
+        }
+    }
+
+    public void LoadAccounts()
+    {
+        if (File.Exists("accounts.txt"))
+        {
+            accounts = Account.Load("accounts.txt");
         }
     }
 }
