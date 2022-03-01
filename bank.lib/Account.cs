@@ -1,4 +1,6 @@
-namespace blazorbank;
+using bank.lib.Exceptions;
+
+namespace bank.lib;
 
 public abstract class Account
 {

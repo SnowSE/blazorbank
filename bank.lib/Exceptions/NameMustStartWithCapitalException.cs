@@ -1,9 +1,9 @@
 using System.Runtime.Serialization;
 
-namespace blazorbank
+namespace bank.lib.Exceptions
 {
     [Serializable]
-    internal class NameMustStartWithCapitalException : Exception
+    public class NameMustStartWithCapitalException : Exception
     {
         public NameMustStartWithCapitalException()
         {

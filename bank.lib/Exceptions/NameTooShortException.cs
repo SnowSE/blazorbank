@@ -1,9 +1,9 @@
 using System.Runtime.Serialization;
 
-namespace blazorbank
+namespace bank.lib.Exceptions
 {
     [Serializable]
-    internal class NameTooShortException : Exception
+    public class NameTooShortException : Exception
     {
         public NameTooShortException()
         {
