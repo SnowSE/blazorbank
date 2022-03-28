@@ -108,13 +108,28 @@ public class CheckingAccount : Account
     }
 
     public CheckingAccountLevel AccountLevel { get; }
-    
+
+    public override bool Equals(object? obj)
+    {
+        return obj is CheckingAccount account &&
+               Name == account.Name &&
+               Balance == account.Balance &&
+               AccountLevel == account.AccountLevel;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Name, Balance, AccountLevel);
+    }
+
     public override void Save(StreamWriter writer)
     {
         base.Save(writer);
         writer.WriteLine("AccountLevel:" + AccountLevel);
         writer.WriteLine("AccountType:CheckingAccount");
     }
+
+    
 }
 
 public enum CheckingAccountLevel

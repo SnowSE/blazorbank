@@ -1,16 +1,33 @@
-﻿<div class="alert alert-secondary mt-4">
+﻿@using bank.lib;
+
+<div class="alert alert-secondary mt-4">
     <span class="oi oi-pencil me-2" aria-hidden="true"></span>
     <strong>@Title</strong>
 
+    <p>EMotion score of title: @(TestInterface.GetEmotionScore(Title))</p>
+
     <span class="text-nowrap">
-        Please take our
-        <a target="_blank" class="font-weight-bold link-dark" href="https://go.microsoft.com/fwlink/?linkid=2149017">brief survey</a>
+        Imporance: @Importance
     </span>
-    and tell us what you think.
+
+    <button @onclick=doubleImportance>Double It!</button>
+    
 </div>
 
 @code {
     // Demonstrates how a parent component can supply parameters
     [Parameter]
     public string? Title { get; set; }
+
+    [Parameter]
+    public int Importance{get;set;} = -5;
+
+    void doubleImportance()
+    {
+        Importance = Importance.DoubleIt();
+        Title = Title.DoubleIt();
+
+        double f = 5.2;
+        f.DoubleIt();
+    }
 }

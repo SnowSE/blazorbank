@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using bank.lib
+@using System.Collections.Generic;
+@using System.Linq;
 
 <PageTitle>Index</PageTitle>
 
@@ -12,24 +14,80 @@
 <button @onclick="saveAccounts">Save Accounts</button> <br />
 
 <h1>Account List</h1>
+<span>Filter:</span>
+<input @onchange=filterChanged /><br/>
 @if (bank.Accounts.Count() == 0)
 {
     <p>No accounts in list.</p>
 }
 
-@foreach (var account in bank.Accounts)
+@foreach (var account in filteredAccounts)
 {
+    var file = account;
+
     <a href="/account/@account.Name">
         @account.Name
     </a> <br/>
 }
 
+<h3>Projection with Query Expressions</h3>
+@foreach(var item in from a in bank.Accounts
+                     //where a.Balance == 0
+                     .OrderByDescending(a => a.Balance)
+                     select new
+                     {
+                         Name = a.Name,
+                         Balance = a.Balance,
+                         HashCode = a.GetHashCode()
+                     })
+{
+    <span>@item.Name (@item.HashCode) has a balance of @item.Balance</span><br/>
+}
+
+<h3>Projection with LINQ Method Syntax</h3>
+@foreach(var item in bank.Accounts
+                    //.Where(a =>  a.Balance == 0)
+                    .OrderBy(a => a.GetHashCode())
+                    .Select(a => new
+                     {
+                         Name = a.Name,
+                         Balance = a.Balance,
+                         HashCode = a.GetHashCode()
+                     }))
+{
+    <span>@item.Name (@item.HashCode) has a balance of @item.Balance</span><br/>
+}
+
 @code
 {
+    void filterChanged(ChangeEventArgs change)
+    {
+        filteredAccounts = from a in bank.Accounts
+                           where a.Name.Contains(change.Value.ToString())
+                           orderby a.Balance
+                           select a;
+    }
+    IEnumerable<Account> filteredAccounts = new List<Account>();
     protected override void OnInitialized()
     {
+        string phrase = "Yes, but - Why is the rum gone?";
+        for(int i = 0; i < phrase.Length; i++)
+        {
+            var letter = phrase[i];
+            //do stuff with each letter
+        }
+
+        var words = phrase.Split(' ', '-');
+
         bank.LoadAccounts();
+
+        projection = from a in bank.Accounts
+                     where a.Balance > 0
+                     select a.Balance;
+
     }
+
+    IEnumerable<decimal> projection;
 
     string newAccountName;
     string errorMessage;

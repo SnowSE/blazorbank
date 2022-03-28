@@ -1,14 +1,28 @@
 ﻿using bank.lib.Exceptions;
 
 namespace bank.lib;
-public class Bank
+
+public partial class Bank
 {
+    public partial string CoerceIntoDebtBondage();
+    public const decimal InterestRate = 0.02M;
+    
     private List<Account> accounts;
 
     public Bank()
     {
         accounts = new List<Account>();
     }
+
+    public int ReadOnlyNumber
+    {
+        get
+        {
+            return (int)InterestRate;
+        }
+    }
+
+    #region Boring Code
 
     public IEnumerable<Account> Accounts => accounts;
 
@@ -33,6 +47,8 @@ public class Bank
 
         return errorMessage;
     }
+
+    #endregion
 
     public string MakeSavingsAccount(string newAccountName)
     {
@@ -65,5 +81,15 @@ public class Bank
         {
             accounts = Account.Load("accounts.txt");
         }
+    }
+
+    private class NestedBankClass
+    {        
+        public NestedBankClass()
+        {
+            SomeProperty = DateTime.Now.Ticks;
+        }
+
+        public long SomeProperty{get;set;}
     }
 }
