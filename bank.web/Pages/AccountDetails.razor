@@ -24,7 +24,7 @@ else
 {
     [Parameter]
     public string AccountName { get; set; }
-    Bank bank = new();
+    Bank bank = new(new TextFileStorageService());
     decimal depositAmount;
     public Account SelectedAccount { get; set; }
 

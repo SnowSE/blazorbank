@@ -6,7 +6,8 @@ public partial class Bank
 {
     public partial string CoerceIntoDebtBondage();
     public const decimal InterestRate = 0.02M;
-    
+    private readonly IStorageService storageService;
+
     //any regular plain old comment
     //i can say anything
     //the compiler doesn't care
@@ -16,9 +17,10 @@ public partial class Bank
     ///<summary>
     /// Constructor for Bank Class - it's great!
     ///</summary>
-    public Bank()
+    public Bank(IStorageService storageService)
     {
         accounts = new List<Account>();
+        this.storageService = storageService;
     }
 
     /// <summary>
@@ -107,22 +109,13 @@ public partial class Bank
 
     public void SaveAccounts()
     {
-        using (var writer = new StreamWriter("accounts.txt"))
-        {
-            foreach (var account in accounts)
-            {
-                account.Save(writer);
-            }
-            writer.Close();
-        }
+        storageService.SaveAccounts(accounts);
     }
 
     public void LoadAccounts()
     {
-        if (File.Exists("accounts.txt"))
-        {
-            accounts = Account.Load("accounts.txt");
-        }
+        accounts.Clear();
+        accounts.AddRange(storageService.LoadAccounts());
     }
 
     private class NestedBankClass

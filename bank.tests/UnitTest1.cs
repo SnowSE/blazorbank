@@ -27,14 +27,14 @@ public class Tests
         var doubled = greeting.DoubleIt();
         Assert.AreEqual(doubled, "HelloHello");
 
-        var bank = new Bank();
+        var bank = new Bank(new InMemoryStorageService());
         
     }
 
     [Test]
     public void TestReflection()
     {
-        var bank = new Bank();
+        var bank = new Bank(new InMemoryStorageService());
         var error = bank.MakeCheckingAccount("Account 1");
         Assert.IsNull(error);
         var account = bank.Accounts.First();
