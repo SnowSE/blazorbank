@@ -47,7 +47,7 @@
 <h3>Projection with LINQ Method Syntax</h3>
 @foreach(var item in bank.Accounts
                     //.Where(a =>  a.Balance == 0)
-                    .OrderBy(a => a.GetHashCode())
+                    .OrderBy(current => current.GetHashCode())
                     .Select(a => new
                      {
                          Name = a.Name,

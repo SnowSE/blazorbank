@@ -7,13 +7,24 @@ public partial class Bank
     public partial string CoerceIntoDebtBondage();
     public const decimal InterestRate = 0.02M;
     
+    //any regular plain old comment
+    //i can say anything
+    //the compiler doesn't care
+
     private List<Account> accounts;
 
+    ///<summary>
+    /// Constructor for Bank Class - it's great!
+    ///</summary>
     public Bank()
     {
         accounts = new List<Account>();
     }
 
+    /// <summary>
+    /// This shows the interest rate, casted as an integer.  Can be read but not modified.
+    /// </summary>
+    /// <value></value>
     public int ReadOnlyNumber
     {
         get
@@ -25,6 +36,37 @@ public partial class Bank
     #region Boring Code
 
     public IEnumerable<Account> Accounts => accounts;
+
+    public Account GetBiggestAccount()
+    {
+        var biggestAccount = accounts[0];
+        foreach(var a in accounts)
+        {
+            if(a.Balance > biggestAccount.Balance)
+            {
+                biggestAccount = a;
+            }
+        }
+        return biggestAccount;
+    }
+
+    public Account GetBiggestAccount2()
+    {
+        return accounts.OrderByDescending(a => a.GetHashCode()).First();
+    }
+
+    public static List<string> GetDetails(object o)
+    {
+        var output = new List<string>();
+
+        var objectType = o.GetType();
+        foreach(var p in objectType.GetProperties())
+        {
+            output.Add($"{p.Name}: {p.GetValue(o)}");
+        }
+
+        return output;
+    }
 
     public string MakeCheckingAccount(string newAccountName)
     {
